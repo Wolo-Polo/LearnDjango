@@ -1,0 +1,9 @@
+{% if questions %}
+    <ul>
+        {% for q in questions %}
+            <li>{{ q.question }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    No question
+{% endif %}
