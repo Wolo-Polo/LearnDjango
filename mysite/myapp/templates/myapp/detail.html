@@ -1,0 +1,14 @@
+<h3>Chi tiết câu hỏi:</h3>
+<div>{{question.question}}</div>
+<div>Các câu trả lời:</div>
+{% for answer in question.answer_set.all %}
+    <div>- {{ answer.answer }} (vote: {{ answer.votes }})
+        <form action="{% url 'myapp:vote' question.id %}" method="POST">
+            {% csrf_token %}
+            <input type="checkbox" name="vote" id="vote{{forloop.counter}}" value="{{answer.id}}"/>
+            <input type="submit" name="votexxx" value="vote"/>
+        </form>
+    </div>
+{% endfor %}
+
+{% if error %} alert("Bạn chưa bình chọn câu trả lời nào") {% endif %}
