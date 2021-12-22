@@ -1,6 +1,8 @@
 # LearnDjango  
 # Setup  
 Required: Python 3.x, pip, Django4.0    
+- pip install virtualenv  
+- pip install -r requirements.txt  
 - Cd to LearnDjango/mysite    
 - run commandline: python manage.py migrate    
 - if u want access shell: python manage.py shell    
