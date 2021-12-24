@@ -5,8 +5,9 @@
     <div>- {{ answer.answer }} (vote: {{ answer.votes }})
         <form action="{% url 'myapp:vote' question.id %}" method="POST">
             {% csrf_token %}
-            <input type="checkbox" name="vote" id="vote{{forloop.counter}}" value="{{answer.id}}"/>
-            <input type="submit" name="votexxx" value="vote"/>
+<!--            <input type="checkbox" name="vote" id="vote{{forloop.counter}}" value="{{answer.id}}"/>-->\
+            <input type="hidden" name="vote" value="{{answer.id}}" />
+            <input type="submit" value="Vote" />
         </form>
     </div>
 {% endfor %}
