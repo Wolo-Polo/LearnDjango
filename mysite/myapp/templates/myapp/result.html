@@ -1,2 +1,3 @@
 Bạn đã bình chọn cho câu hỏi: {{question.question}}
-<div><a href="{% url 'myapp:index'%}">Danh sách câu hỏi</a></div>
+<div><a href="{% url 'myapp:detail' question.id %}">View question</a></div>
+<div><a href="{% url 'myapp:index'%}">View question list</a></div>

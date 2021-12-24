@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create question view</title>
+</head>
+<body>
+    <a href="{% url 'myapp:index'%}">Home</a>
+    {% if status %}
+        <div>Trạng thái: {{status}}</div>
+    {% endif %}
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Question:</td>
+            <td><input type="text" name="question"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">Answer:</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" name="answer1"/></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="text" name="answer2"/></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><input type="text" name="answer3"/></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><input type="text" name="answer4"/></td>
+        </tr>
+    </table>
+    <input type="submit" value="Create">
+    </form>
+</body>
+</html>

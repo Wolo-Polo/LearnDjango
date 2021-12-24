@@ -7,10 +7,10 @@ from django.db import models
 
 class Question(models.Model):
     question = models.CharField(max_length=300)
-    datetime_create = models.DateTimeField("date time created")
+    datetime_create = models.DateTimeField("Date time created")
 
     def __str__(self):
-        return "<Question: " + self.question
+        return "<Question: " + self.question + ">"
 
 
 class Answer(models.Model):

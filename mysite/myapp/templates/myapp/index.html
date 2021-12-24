@@ -1,6 +1,6 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
-
+<div><a href="{% url 'myapp:create'%}" >Add new question</a></div>
 {% if questions %}
     <ul>
         {% for q in questions %}
