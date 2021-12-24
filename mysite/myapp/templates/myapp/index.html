@@ -7,6 +7,15 @@
             <li><a href="{% url 'myapp:detail' q.id %}">{{ q.question }}</a></li>
         {% endfor %}
     </ul>
+    <div>
+        {% if questions.has_previous %}
+            <a href="{% url 'myapp:index' %}?page={{questions.previous_page_number}}&limit={{questions.paginator.per_page}}">Pre</a>
+        {% endif %}
+            <span> Page {{questions.number}} of {{questions.paginator.num_pages}}</span>
+        {% if questions.has_next %}
+            <a href="{% url 'myapp:index' %}?page={{questions.next_page_number}}&limit={{questions.paginator.per_page}}">Pre</a>
+        {% endif %}
+    </div>
 {% else %}
     No question
 {% endif %}

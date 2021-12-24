@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.db.models import F
 from django.views import generic
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Question, Answer
 
 
@@ -14,8 +15,22 @@ class IndexView(generic.ListView):
     context_object_name = "questions"
 
     def get_queryset(self):
-        # lấy danh sách question, order by datetime_create, lấy 5 phần tử đầu
-        return Question.objects.order_by("-datetime_create")[:5]
+        question_all = Question.objects.all()
+        try:
+            limit = self.request.GET['limit']
+        except KeyError:
+            limit = 5
+        paginator = Paginator(object_list=question_all, per_page=limit)
+        try:
+            page = self.request.GET['page']
+            questions = paginator.page(page)
+        except KeyError:
+            questions = paginator.page(1)
+        except PageNotAnInteger:
+            questions = paginator.page(1)
+        except EmptyPage:
+            questions = paginator.page(1)
+        return questions
 
 
 class DetailView(generic.DetailView):
@@ -52,9 +67,8 @@ def create_question_view(request):
         # idQuestion = question.id
         totalAnswer = 4
         for i in range(totalAnswer):
-            answer_text = request.POST["answer" + str(i+1)]
+            answer_text = request.POST["answer" + str(i + 1)]
             if answer_text != "":
                 answer = Answer(question=question, answer=answer_text, votes=0)
                 answer.save()
         return render(request, "myapp/create.html", {"status": "Success"})
-
