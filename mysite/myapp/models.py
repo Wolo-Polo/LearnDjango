@@ -19,5 +19,5 @@ class Answer(models.Model):
     votes = models.IntegerField(default=0)
 
     def __str__(self):
-        return "<Question: " + self.answer
+        return "<Question: " + self.answer + ">"
 
